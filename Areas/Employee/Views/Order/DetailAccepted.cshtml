@@ -28,13 +28,12 @@
                         else
                         {
                             <span class="badge bg-danger">Chưa tiếp nhận</span>
-
                         }
                     }
                 </div>
             </div>
-
         </div>
+
         <div class="detail-item mt-4">
             <div class="d-flex justify-content-between">
                 <h3>Danh sách món ăn</h3>
@@ -45,31 +44,43 @@
                         Tạo hóa đơn
                     </a>
                 </div>
-
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Tên món ăn</th>
-                        <th>Số lượng</th>
-                        <th>Giá</th>
-                        <th>Đã xong</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var orderDetail in ViewBag.OrderDetails)
-                    {
-                        <tr style="height: 40px;">
-                            <td>@orderDetail.Food.Name</td>
-                            <td>@orderDetail.Quantity</td>
-                            <td>@(orderDetail.Food.Price * orderDetail.Quantity)</td>
-                            <td>
-                                <input type="checkbox" @(orderDetail.Status > 0 ? "checked" : "") />
-                            </td>
+
+            <!-- Form để cập nhật trạng thái của các món ăn -->
+            <form asp-action="UpdateOrderDetailsStatus" method="post">
+                <!-- Truyền orderId để biết đơn hàng hiện tại -->
+                <input type="hidden" name="orderId" value="@Model.Id" />
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tên món ăn</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Đã xong</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var orderDetail in ViewBag.OrderDetails)
+                        {
+                            <tr style="height: 40px;">
+                                <td>@orderDetail.Food.Name</td>
+                                <td>@orderDetail.Quantity</td>
+                                <td>@(orderDetail.Food.Price * orderDetail.Quantity)</td>
+                                <td>
+                                    <input type="checkbox" name="Statuses[@orderDetail.OrderId,@orderDetail.FoodId]"
+                                           value="true" @(orderDetail.Status > 0 ? "checked" : "") />
+                                    <input type="hidden" name="Statuses[@orderDetail.OrderId,@orderDetail.FoodId]" value="false" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Nút submit -->
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </form>
+
             <div class="totalprice">
                 <p>
                     Tổng tiền : @Model.TotalPrice
@@ -91,9 +102,9 @@
         flex-flow: row-reverse;
     }
 
-        .totalprice p {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 0px;
-        }
+    .totalprice p {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
 </style>
