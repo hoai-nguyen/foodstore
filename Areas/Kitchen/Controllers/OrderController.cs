@@ -48,7 +48,7 @@ namespace FoodStore.Areas.Kitchen.Controllers
         }
 
         [HttpGet]
-        [Route("/Admin/Order/Detail/{id:int}")]
+        [Route("/Kitchen/Order/Detail/{id:int}")]
         public async Task<IActionResult> Detail(int id)
         {
             var order = await _orderRepository.GetOrderById(id);

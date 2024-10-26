@@ -12,7 +12,7 @@
             <p> </p>
             <p class="fw-bold fs-3">Danh sách bàn</p>
             <div class="table-action d-flex align-items-center gap-2">
-                <a class="btn btn-info" href="/Admin/Table/Add">Thêm bàn</a>
+                <a class="btn btn-info" href="/Kitchen/Table/Add">Thêm bàn</a>
             </div>
 
         </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                    <form action="/Admin/Table/DeleteConfirmed" method="post">
+                                    <form action="/Kitchen/Table/DeleteConfirmed" method="post">
                                         <input value="@table.Id" name="id" class="d-none">
                                         <button type="submit" class="btn btn-danger">Đồng ý</button>
                                     </form>

@@ -40,9 +40,6 @@
 
                 <div class="d-flex align-items-center gap-2">
                     <a href="/kitchen/Order/OrderAccepted" class="btn btn-secondary">Trở về</a>
-                    <a href="/kitchen/Invoice/Create/@Model.Id" class="btn btn-primary">
-                        Tạo hóa đơn
-                    </a>
                 </div>
             </div>
 
@@ -56,7 +53,6 @@
                         <tr>
                             <th>Tên món ăn</th>
                             <th>Số lượng</th>
-                            <th>Giá</th>
                             <th>Đã xong</th>
                         </tr>
                     </thead>
@@ -66,7 +62,6 @@
                             <tr style="height: 40px;">
                                 <td>@orderDetail.Food.Name</td>
                                 <td>@orderDetail.Quantity</td>
-                                <td>@(orderDetail.Food.Price * orderDetail.Quantity)</td>
                                 <td>
                                     <input type="checkbox" name="Statuses[@orderDetail.OrderId,@orderDetail.FoodId]"
                                            value="true" @(orderDetail.Status > 0 ? "checked" : "") />
@@ -80,12 +75,6 @@
                 <!-- Nút submit -->
                 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
             </form>
-
-            <div class="totalprice">
-                <p>
-                    Tổng tiền : @Model.TotalPrice
-                </p>
-            </div>
         </div>
     </div>
 </div>
