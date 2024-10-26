@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodStore.Areas.Employee.Controllers
+namespace FoodStore.Areas.Kitchen.Controllers
 {
-    [Area("Employee")]
-    [Authorize(Roles = SD.Role_Employee)]
+    [Area("Kitchen")]
+    [Authorize(Roles = SD.Role_Kitchen)]
     public class OrderController : Controller
     {
         private readonly ApplicationDbContext _context;

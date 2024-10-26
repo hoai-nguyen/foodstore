@@ -128,6 +128,11 @@ namespace FoodStore.Areas.Identity.Pages.Account
                         {
                             return Redirect("/Employee/Home/Index");
                         }
+                        else if (await _userManager.IsInRoleAsync(user, SD.Role_Kitchen))
+                        {
+                            return Redirect("/Kitchen/Home/Index");
+                        }
+
                     }
                 }
                 if (result.RequiresTwoFactor)
